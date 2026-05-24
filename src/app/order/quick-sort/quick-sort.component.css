@@ -1,0 +1,64 @@
+.order-page {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.order-header h1 {
+  margin: 0 0 0.5rem;
+  font-size: 2rem;
+}
+
+.order-header p {
+  margin: 0;
+  color: #555;
+}
+
+.order-control {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.order-control label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.order-control input {
+  width: 4.5rem;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.35rem;
+}
+
+.order-control button {
+  padding: 0.75rem 1rem;
+  border: none;
+  background: #1f2937;
+  color: #fff;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.order-control button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.order-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.order-footer p {
+  margin: 0;
+}

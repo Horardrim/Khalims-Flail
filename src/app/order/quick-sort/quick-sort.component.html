@@ -1,0 +1,28 @@
+<section class="order-page">
+  <header class="order-header">
+    <h1>快速排序可视化</h1>
+    <p>使用 Highcharts 展示快速排序算法的比较、交换和枢轴移动。</p>
+  </header>
+
+  <section class="order-control">
+    <label>
+      数组大小:
+      <input type="number" [(ngModel)]="size" min="5" max="30" />
+    </label>
+    <label>
+      动画速度 (ms):
+      <input type="number" [(ngModel)]="speed" min="100" max="1200" />
+    </label>
+    <button type="button" (click)="generateArray()" [disabled]="isRunning">生成新数组</button>
+    <button type="button" (click)="startSort()" [disabled]="isRunning">开始排序</button>
+  </section>
+
+  <div class="chart-wrapper">
+    <div highchartsChart [options]="chartOptions" class="chart"></div>
+  </div>
+
+  <footer class="order-footer">
+    <p>{{ stepDescription }}</p>
+    <p>步骤 {{ currentStep }} / {{ steps.length }}</p>
+  </footer>
+</section>

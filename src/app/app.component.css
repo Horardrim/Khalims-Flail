@@ -1,0 +1,21 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f9fafb;
+  color: #111827;
+}
+
+.app-nav {
+  padding: 1rem 1.5rem;
+  background: #1f2937;
+}
+
+.app-nav a {
+  color: #f9fafb;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+main.main {
+  padding: 1.5rem;
+}

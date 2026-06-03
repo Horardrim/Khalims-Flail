@@ -1,0 +1,81 @@
+<section class="leetcode-shell">
+  <div class="leetcode-header">
+    <h1>Array Partition 可视化</h1>
+    <p>给定整数 X，将数组分成三部分：<strong>小于 X</strong>、<strong>等于 X</strong>、<strong>大于 X</strong>。</p>
+  </div>
+
+  <form class="leetcode-form" (ngSubmit)="runPartition()">
+    <div class="form-row">
+      <label for="values">输入数组（逗号或空格分隔）：</label>
+      <input id="values" name="values" [(ngModel)]="inputValue" />
+    </div>
+
+    <div class="form-row">
+      <label for="pivot">目标值 X：</label>
+      <input id="pivot" name="pivot" [(ngModel)]="pivotValue" />
+    </div>
+
+    <div class="form-row form-action">
+      <button type="button" (click)="runPartition()">开始分区</button>
+    </div>
+  </form>
+
+  <div class="leetcode-summary" *ngIf="steps.length > 0">
+    <div class="summary-item">
+      <h3>原始数组</h3>
+      <div class="array-box">{{ originalArray.join('，') }}</div>
+    </div>
+    <div class="summary-item">
+      <h3>目标值 X</h3>
+      <div class="result-box">{{ pivotValue }}</div>
+    </div>
+    <div class="summary-item">
+      <h3>当前分区</h3>
+      <div class="result-box">{{ segmentSummary }}</div>
+    </div>
+  </div>
+
+  <div class="array-progress" *ngIf="currentSnapshot">
+    <div class="snapshot-label">{{ stepLabel }}</div>
+    <div class="array-row">
+      <div
+        *ngFor="let item of currentSnapshot.array; let i = index"
+        class="partition-item"
+        [class.less]="i < currentSnapshot.low"
+        [class.equal]="i >= currentSnapshot.low && i < currentSnapshot.mid"
+        [class.greater]="i > currentSnapshot.high"
+        [class.unprocessed]="i >= currentSnapshot.mid && i <= currentSnapshot.high"
+        [class.current]="i === currentSnapshot.mid && currentSnapshot.mid <= currentSnapshot.high"
+      >
+        {{ item }}
+      </div>
+    </div>
+    <div class="boundary-row">
+      <span>low = {{ currentSnapshot.low }}</span>
+      <span>mid = {{ currentSnapshot.mid }}</span>
+      <span>high = {{ currentSnapshot.high }}</span>
+    </div>
+  </div>
+
+  <div class="step-controls" *ngIf="steps.length > 0">
+    <button type="button" (click)="prevStep()" [disabled]="currentStep === 0">上一步</button>
+    <button type="button" (click)="nextStep()" [disabled]="currentStep >= steps.length - 1">下一步</button>
+  </div>
+
+  <div class="chart-panel" *ngIf="currentSnapshot">
+    <highcharts-chart
+      [options]="chartOptions"
+      style="width: 100%; height: 420px; display: block;"
+    ></highcharts-chart>
+  </div>
+
+  <div class="legend-row" *ngIf="steps.length > 0">
+    <span><i class="legend-block less"></i> 小于 X</span>
+    <span><i class="legend-block equal"></i> 等于 X</span>
+    <span><i class="legend-block greater"></i> 大于 X</span>
+    <span><i class="legend-block current"></i> 当前 mid</span>
+    <span><i class="legend-block unprocessed"></i> 未处理区间</span>
+  </div>
+
+  <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+</section>

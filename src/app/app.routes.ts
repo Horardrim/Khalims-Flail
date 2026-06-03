@@ -5,5 +5,9 @@ export const routes: Routes = [
   {
     path: 'order',
     loadChildren: () => import('./order/order.module').then((m) => m.OrderModule)
+  },
+  {
+    path: 'leetcode',
+    loadChildren: () => import('./leetcode/leetcode.module').then((m) => m.LeetcodeModule)
   }
 ];

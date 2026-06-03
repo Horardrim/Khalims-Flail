@@ -1,0 +1,30 @@
+.leetcode-shell {
+  display: grid;
+  gap: 1.4rem;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 1.6rem;
+}
+
+.leetcode-header h1 {
+  margin: 0 0 0.4rem;
+}
+
+.leetcode-nav {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.leetcode-nav a {
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #1976d2;
+  color: #1976d2;
+  text-decoration: none;
+}
+
+.leetcode-nav a.active {
+  background: #1976d2;
+  color: #fff;
+}

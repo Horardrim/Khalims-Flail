@@ -1,0 +1,196 @@
+.leetcode-shell {
+  display: grid;
+  gap: 1.4rem;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 1.6rem;
+}
+
+.leetcode-header h1 {
+  margin: 0 0 0.4rem;
+}
+
+.leetcode-form {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.form-placeholder {
+  visibility: hidden;
+}
+
+.form-action {
+  grid-template-columns: auto !important;
+  justify-content: center;
+}
+
+.leetcode-form label {
+  min-width: 100px;
+}
+
+.leetcode-form input {
+  min-width: 0;
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #bcc0c4;
+  border-radius: 0.5rem;
+}
+
+.step-controls button,
+.leetcode-form button {
+  white-space: nowrap;
+}
+
+.leetcode-form button {
+  padding: 1.4rem 1rem;
+  width: 150px;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #1976d2;
+  color: white;
+  cursor: pointer;
+}
+
+.leetcode-summary {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.summary-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 0.8rem;
+  padding: 1rem;
+  background: #fafafa;
+}
+
+.array-box,
+.result-box {
+  padding: 0.8rem;
+  background: white;
+  border-radius: 0.6rem;
+  border: 1px solid #e0e0e0;
+  margin-top: 0.6rem;
+  overflow-wrap: anywhere;
+}
+
+.array-progress {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.snapshot-label {
+  font-weight: 600;
+}
+
+.array-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.partition-item {
+  min-width: 3rem;
+  padding: 0.7rem 0.85rem;
+  text-align: center;
+  border-radius: 0.65rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+.partition-item.less {
+  background: #66bb6a;
+}
+
+.partition-item.equal {
+  background: #ffa726;
+}
+
+.partition-item.greater {
+  background: #ef5350;
+}
+
+.partition-item.unprocessed {
+  background: #90a4ae;
+}
+
+.partition-item.current {
+  outline: 2px solid #1565c0;
+}
+
+.boundary-row,
+.legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.boundary-row span,
+.legend-row span {
+  font-size: 0.95rem;
+}
+
+.legend-block {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 0.4rem;
+  vertical-align: middle;
+  border-radius: 3px;
+}
+
+.legend-block.less {
+  background: #66bb6a;
+}
+
+.legend-block.equal {
+  background: #ffa726;
+}
+
+.legend-block.greater {
+  background: #ef5350;
+}
+
+.legend-block.current {
+  background: #1976d2;
+}
+
+.legend-block.unprocessed {
+  background: #90a4ae;
+}
+
+.step-controls {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.step-controls button {
+  paddingpadding: 0.7rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #1976d2;
+  color: white;
+  cursor: pointer;
+}
+
+.step-controls button[disabled] {
+  background-color: #9e9e9e;
+  cursor: not-allowed;
+}
+
+.error-message {
+  padding: 1rem;
+  color: #b00020;
+  border: 1px solid #f8d7da;
+  background: #ffebee;
+  border-radius: 0.75rem;
+}

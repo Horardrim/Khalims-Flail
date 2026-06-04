@@ -9,5 +9,9 @@ export const routes: Routes = [
   {
     path: 'leetcode',
     loadChildren: () => import('./leetcode/leetcode.module').then((m) => m.LeetcodeModule)
+  },
+  {
+    path: 'alg',
+    loadChildren: () => import('./alg/alg.module').then((m) => m.AlgModule)
   }
 ];

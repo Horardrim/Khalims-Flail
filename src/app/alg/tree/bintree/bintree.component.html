@@ -1,0 +1,76 @@
+<section class="bintree-page">
+  <header class="bintree-header">
+    <h1>二叉树遍历</h1>
+    <p>实现先序遍历、中序遍历和后序遍历算法</p>
+  </header>
+
+  <section class="bintree-tree">
+    <h2>二叉树结构</h2>
+    <div class="tree-container">
+      <svg width="700" height="300" class="tree-lines">
+        <line x1="350" y1="40" x2="200" y2="110" stroke="#9ca3af" stroke-width="2"/>
+        <line x1="350" y1="40" x2="500" y2="110" stroke="#9ca3af" stroke-width="2"/>
+        <line x1="200" y1="110" x2="100" y2="180" stroke="#9ca3af" stroke-width="2"/>
+        <line x1="200" y1="110" x2="300" y2="180" stroke="#9ca3af" stroke-width="2"/>
+        <line x1="500" y1="110" x2="400" y2="180" stroke="#9ca3af" stroke-width="2"/>
+        <line x1="500" y1="110" x2="600" y2="180" stroke="#9ca3af" stroke-width="2"/>
+        <line x1="100" y1="180" x2="50" y2="250" stroke="#9ca3af" stroke-width="2"/>
+        <line x1="100" y1="180" x2="150" y2="250" stroke="#9ca3af" stroke-width="2"/>
+        <line x1="400" y1="180" x2="350" y2="250" stroke="#9ca3af" stroke-width="2"/>
+        <line x1="400" y1="180" x2="450" y2="250" stroke="#9ca3af" stroke-width="2"/>
+      </svg>
+      <div class="node" [class.active]="activeNode === 10" style="top: 20px; left: 330px;">10</div>
+      <div class="node" [class.active]="activeNode === 5" style="top: 90px; left: 180px;">5</div>
+      <div class="node" [class.active]="activeNode === 15" style="top: 90px; left: 480px;">15</div>
+      <div class="node" [class.active]="activeNode === 3" style="top: 160px; left: 80px;">3</div>
+      <div class="node" [class.active]="activeNode === 7" style="top: 160px; left: 280px;">7</div>
+      <div class="node" [class.active]="activeNode === 12" style="top: 160px; left: 380px;">12</div>
+      <div class="node" [class.active]="activeNode === 18" style="top: 160px; left: 580px;">18</div>
+      <div class="node" [class.active]="activeNode === 2" style="top: 230px; left: 30px;">2</div>
+      <div class="node" [class.active]="activeNode === 4" style="top: 230px; left: 130px;">4</div>
+      <div class="node" [class.active]="activeNode === 11" style="top: 230px; left: 330px;">11</div>
+      <div class="node" [class.active]="activeNode === 13" style="top: 230px; left: 430px;">13</div>
+    </div>
+  </section>
+
+  <section class="bintree-traversals">
+    <div class="traversal-card">
+      <h3>先序遍历 (Preorder)</h3>
+      <p class="traversal-desc">根 → 左 → 右</p>
+      <div class="traversal-result">
+        <span *ngFor="let val of preorderResult; index as i" class="traversal-item preorder-item">
+          {{ val }}{{ i < preorderResult.length - 1 ? ' → ' : '' }}
+        </span>
+      </div>
+      <button (click)="animateTraversal('preorder')" [disabled]="isAnimating">
+        {{ isAnimating ? '动画中...' : '播放动画' }}
+      </button>
+    </div>
+
+    <div class="traversal-card">
+      <h3>中序遍历 (Inorder)</h3>
+      <p class="traversal-desc">左 → 根 → 右</p>
+      <div class="traversal-result">
+        <span *ngFor="let val of inorderResult; index as i" class="traversal-item inorder-item">
+          {{ val }}{{ i < preorderResult.length - 1 ? ' → ' : '' }}
+        </span>
+      </div>
+      <button (click)="animateTraversal('inorder')" [disabled]="isAnimating">
+        {{ isAnimating ? '动画中...' : '播放动画' }}
+      </button>
+    </div>
+
+    <div class="traversal-card">
+      <h3>后序遍历 (Postorder)</h3>
+      <p class="traversal-desc">左 → 右 → 根</p>
+      <div class="traversal-result">
+        <span *ngFor="let val of postorderResult; index as i" class="traversal-item postorder-item">
+          {{ val }}{{ i < preorderResult.length - 1 ? ' → ' : '' }}
+        </span>
+      </div>
+      <button (click)="animateTraversal('postorder')" [disabled]="isAnimating">
+        {{ isAnimating ? '动画中...' : '播放动画' }}
+      </button>
+    </div>
+  </section>
+</section>

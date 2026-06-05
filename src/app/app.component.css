@@ -1,21 +1,143 @@
 :host {
-  display: block;
+  display: flex;
   min-height: 100vh;
   background: #f9fafb;
   color: #111827;
 }
 
-.app-nav {
-  padding: 1rem 1.5rem;
+.sidebar-toggle {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
   background: #1f2937;
+  color: #f9fafb;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: left 0.3s ease;
 }
 
-.app-nav a {
+.sidebar-toggle:hover {
+  background: #374151;
+}
+
+.sidebar-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+.sidebar {
+  width: 240px;
+  background: #1f2937;
+  padding: 4rem 0 1rem;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.sidebar.collapsed {
+  transform: translateX(-100%);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0 1rem;
+}
+
+.nav-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-item-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.nav-toggle {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 4px;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.nav-toggle:hover {
   color: #f9fafb;
-  text-decoration: none;
+  background-color: #374151;
+}
+
+.nav-toggle svg {
+  transition: transform 0.2s ease;
+}
+
+.nav-toggle svg.expanded {
+  transform: rotate(180deg);
+}
+
+.nav-item {
+  flex: 1;
+  display: block;
+  padding: 0.75rem 1rem;
+  color: #f9fafb;
   font-weight: 600;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-item:hover {
+  background-color: #374151;
+}
+
+.nav-item.active {
+  background-color: #3b82f6;
+}
+
+.nav-children {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  padding: 0.25rem 0 0.25rem 1rem;
+}
+
+.nav-child {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #9ca3af;
+  font-size: 0.875rem;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-child:hover {
+  background-color: #374151;
+  color: #f9fafb;
+}
+
+.nav-child.active {
+  background-color: #3b82f6;
+  color: #fff;
 }
 
 main.main {
+  flex: 1;
   padding: 1.5rem;
+  transition: margin-left 0.3s ease;
 }

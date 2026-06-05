@@ -1,8 +1,63 @@
-<nav class="app-nav">
-  <a routerLink="/order">快速排序可视化</a>
-  <a routerLink="/leetcode">LeetCode 数组分区</a>
-</nav>
+<button class="sidebar-toggle" (click)="toggleSidebar()">
+  <svg *ngIf="sidebarCollapsed" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="18" y1="6" x2="6" y2="18"></line>
+    <line x1="6" y1="6" x2="18" y2="18"></line>
+  </svg>
+  <svg *ngIf="!sidebarCollapsed" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="12" y1="5" x2="12" y2="19"></line>
+    <line x1="5" y1="12" x2="19" y2="12"></line>
+  </svg>
+</button>
 
-<main class="main">
+<aside class="sidebar" [class.collapsed]="sidebarCollapsed">
+  <nav class="sidebar-nav">
+    <div *ngFor="let item of navItems" class="nav-group">
+      <div class="nav-item-wrapper">
+        <button 
+          *ngIf="item.children?.length" 
+          class="nav-toggle"
+          (click)="toggleGroup(item.path)"
+        >
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            width="16" 
+            height="16" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            stroke-width="2" 
+            stroke-linecap="round" 
+            stroke-linejoin="round"
+            [class.expanded]="isGroupExpanded(item.path)"
+          >
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <a 
+          [routerLink]="getNavItemPath(item)" 
+          routerLinkActive="active"
+          class="nav-item"
+        >
+          {{ item.label }}
+        </a>
+      </div>
+      <div 
+        *ngIf="item.children?.length && isGroupExpanded(item.path)" 
+        class="nav-children"
+      >
+        <a 
+          *ngFor="let child of item.children" 
+          [routerLink]="'/' + child.path" 
+          routerLinkActive="active"
+          class="nav-child"
+        >
+          {{ child.label }}
+        </a>
+      </div>
+    </div>
+  </nav>
+</aside>
+
+<main class="main" [class.sidebar-open]="!sidebarCollapsed">
   <router-outlet></router-outlet>
 </main>

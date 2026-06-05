@@ -16,6 +16,10 @@ import { RouterModule } from '@angular/router';
           {
             path: 'remove-duplicates',
             loadChildren: () => import('./remove-duplicates/remove-duplicates.module').then((m) => m.RemoveDuplicatesModule)
+          },
+          {
+            path: 'remove-duplicates-i',
+            loadChildren: () => import('./remove-duplicates-i/remove-duplicates-i.module').then((m) => m.RemoveDuplicatesIModule)
           }
         ]
       }

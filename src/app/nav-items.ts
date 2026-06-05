@@ -17,6 +17,7 @@ export const navItems: NavItem[] = [
     label: 'LeetCode',
     children: [
       { path: 'leetcode/array-partition', label: '数组分区' },
+      { path: 'leetcode/remove-duplicates-i', label: '删除重复项 I' },
       { path: 'leetcode/remove-duplicates', label: '删除重复项 II' }
     ]
   },

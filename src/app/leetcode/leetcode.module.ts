@@ -12,6 +12,10 @@ import { RouterModule } from '@angular/router';
           {
             path: 'array-partition',
             loadChildren: () => import('./array-partition/array-partition.module').then((m) => m.ArrayPartitionModule)
+          },
+          {
+            path: 'remove-duplicates',
+            loadChildren: () => import('./remove-duplicates/remove-duplicates.module').then((m) => m.RemoveDuplicatesModule)
           }
         ]
       }

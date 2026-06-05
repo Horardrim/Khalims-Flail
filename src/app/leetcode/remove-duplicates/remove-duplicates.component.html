@@ -1,0 +1,73 @@
+<section class="leetcode-shell">
+  <div class="leetcode-header">
+    <h1>删除重复项 II 可视化</h1>
+    <p>给定一个<strong>有序数组</strong> nums，删除重复出现的元素，使得出现次数超过两次的元素只出现两次，返回删除后数组的新长度。</p>
+  </div>
+
+  <form class="leetcode-form" (ngSubmit)="runRemoveDuplicates()">
+    <div class="form-row">
+      <label for="values">输入有序数组（逗号或空格分隔）：</label>
+      <input id="values" name="values" [(ngModel)]="inputValue" />
+    </div>
+
+    <div class="form-row form-action">
+      <button type="button" (click)="runRemoveDuplicates()">开始去重</button>
+    </div>
+  </form>
+
+  <div class="leetcode-summary" *ngIf="steps.length > 0">
+    <div class="summary-item">
+      <h3>原始数组</h3>
+      <div class="array-box">{{ originalArray.join('，') }}</div>
+    </div>
+    <div class="summary-item">
+      <h3>新数组长度</h3>
+      <div class="result-box">{{ isCompleted ? resultLength : '计算中...' }}</div>
+    </div>
+    <div class="summary-item" *ngIf="currentSnapshot && currentSnapshot.removed && currentSnapshot.removed.length">
+      <h3>移除的重复项</h3>
+      <div class="result-box">{{ currentSnapshot.removed.join('，') }}</div>
+    </div>
+  </div>
+
+  <div class="array-progress" *ngIf="currentSnapshot">
+    <div class="snapshot-label">{{ stepLabel }}</div>
+    <div class="array-row">
+      <div
+        *ngFor="let item of currentSnapshot.array; let i = index"
+        class="partition-item"
+        [class.kept]="i < currentSnapshot.slow"
+        [class.current]="i === currentSnapshot.fast"
+        [class.discarded]="isCompleted && i >= currentSnapshot.slow"
+      >
+        {{ item }}
+        <span *ngIf="isCompleted && i >= currentSnapshot.slow" class="remove-mark">✕</span>
+      </div>
+    </div>
+    <div class="boundary-row">
+      <span>slow = {{ currentSnapshot.slow }}</span>
+      <span>fast = {{ currentSnapshot.fast }}</span>
+      <span>新长度 = {{ currentSnapshot.count }}</span>
+    </div>
+  </div>
+
+  <div class="step-controls" *ngIf="steps.length > 0">
+    <button type="button" (click)="prevStep()" [disabled]="currentStep === 0">上一步</button>
+    <button type="button" (click)="nextStep()" [disabled]="currentStep >= steps.length - 1">下一步</button>
+  </div>
+
+  <div class="chart-panel" *ngIf="currentSnapshot">
+    <highcharts-chart
+      [options]="chartOptions"
+      style="width: 100%; height: 420px; display: block;"
+    ></highcharts-chart>
+  </div>
+
+  <div class="legend-row" *ngIf="steps.length > 0">
+    <span><i class="legend-block kept"></i> 保留区间</span>
+    <span><i class="legend-block current"></i> 当前 fast</span>
+    <span><i class="legend-block discarded"></i> 被舍弃（✕标记）</span>
+  </div>
+
+  <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+</section>

@@ -25,7 +25,13 @@ export const navItems: NavItem[] = [
     path: 'alg',
     label: '数据结构',
     children: [
-      { path: 'alg/tree', label: '二叉树可视化' }
+      { 
+        path: 'alg/tree', 
+        label: '树',
+        children: [
+          { path: 'alg/tree/bintree', label: '二叉树遍历' }
+        ]
+      }
     ]
   }
 ];

@@ -3,6 +3,7 @@
   min-height: 100vh;
   background: #f9fafb;
   color: #111827;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 .sidebar-toggle {
@@ -14,8 +15,8 @@
   height: 40px;
   border: none;
   border-radius: 8px;
-  background: #1f2937;
-  color: #f9fafb;
+  background: #1e1e1e;
+  color: #cccccc;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -24,7 +25,7 @@
 }
 
 .sidebar-toggle:hover {
-  background: #374151;
+  background: #2a2a2a;
 }
 
 .sidebar-toggle svg {
@@ -33,8 +34,8 @@
 }
 
 .sidebar {
-  width: 240px;
-  background: #1f2937;
+  width: 220px;
+  background: #1e1e1e;
   padding: 4rem 0 1rem;
   transition: transform 0.3s ease;
   flex-shrink: 0;
@@ -48,7 +49,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 0 1rem;
+  padding: 0 0.5rem;
 }
 
 .nav-group {
@@ -59,83 +60,163 @@
 .nav-item-wrapper {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
 }
 
 .nav-toggle {
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
-  background: none;
-  color: #9ca3af;
+  background: transparent;
+  color: #6b7280;
   cursor: pointer;
   padding: 0;
-  border-radius: 4px;
-  transition: color 0.2s, background-color 0.2s;
+  font-size: 14px;
+  line-height: 1;
+  transition: color 0.15s, background-color 0.15s;
 }
 
 .nav-toggle:hover {
-  color: #f9fafb;
-  background-color: #374151;
+  color: #cccccc;
+  background-color: #2a2a2a;
 }
 
 .nav-toggle svg {
-  transition: transform 0.2s ease;
+  width: 14px;
+  height: 14px;
+  transition: transform 0.15s ease;
+  transform: rotate(-90deg);
 }
 
 .nav-toggle svg.expanded {
-  transform: rotate(180deg);
+  transform: rotate(0deg);
 }
 
 .nav-item {
   flex: 1;
   display: block;
-  padding: 0.75rem 1rem;
-  color: #f9fafb;
-  font-weight: 600;
+  padding: 6px 8px;
+  color: #e4e4e7;
+  font-size: 14px;
+  font-weight: 500;
   text-decoration: none;
-  border-radius: 6px;
-  transition: background-color 0.2s, color 0.2s;
+  border-radius: 2px;
+  transition: background-color 0.15s, color 0.15s;
 }
 
 .nav-item:hover {
-  background-color: #374151;
+  background-color: #2a2a2a;
 }
 
 .nav-item.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  background-color: transparent;
+  color: #cccccc;
 }
 
 .nav-children {
   display: flex;
   flex-direction: column;
-  gap: 0.125rem;
-  padding: 0.25rem 0 0.25rem 1rem;
+  gap: 0.0625rem;
+  padding-left: 12px;
+}
+
+.nav-child-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-child-header {
+  display: flex;
+  align-items: center;
+}
+
+.nav-toggle-child {
+  width: 18px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0;
+  font-size: 12px;
+  line-height: 1;
+  transition: color 0.15s, background-color 0.15s;
+  flex-shrink: 0;
+}
+
+.nav-toggle-child:hover {
+  color: #cccccc;
+  background-color: #2a2a2a;
+}
+
+.nav-toggle-child svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.15s ease;
+  transform: rotate(-90deg);
+}
+
+.nav-toggle-child svg.expanded {
+  transform: rotate(0deg);
 }
 
 .nav-child {
+  flex: 1;
   display: block;
-  padding: 0.5rem 1rem;
-  color: #9ca3af;
-  font-size: 0.875rem;
+  padding: 6px 8px;
+  color: #e4e4e7;
+  font-size: 14px;
   text-decoration: none;
-  border-radius: 6px;
-  transition: background-color 0.2s, color 0.2s;
+  border-radius: 2px;
+  transition: background-color 0.15s, color 0.15s;
 }
 
 .nav-child:hover {
-  background-color: #374151;
-  color: #f9fafb;
+  background-color: #2a2a2a;
 }
 
 .nav-child.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  background-color: transparent;
+  color: #cccccc;
+}
+
+.nav-grandchildren {
+  display: flex;
+  flex-direction: column;
+  gap: 0.0625rem;
+  padding-left: 24px;
+}
+
+.nav-grandchild {
+  display: block;
+  padding: 6px 8px;
+  color: #e4e4e7;
+  font-size: 14px;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.nav-grandchild:hover {
+  background-color: #2a2a2a;
+}
+
+.nav-grandchild.active {
+  background-color: transparent;
+  border: 1px solid #007acc;
+  color: #cccccc;
+}
+
+.nav-item.active-leaf,
+.nav-child.active-leaf {
+  background-color: transparent;
+  border: 1px solid #007acc;
+  color: #cccccc;
 }
 
 main.main {

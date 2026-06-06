@@ -11,13 +11,170 @@
   font-size: 2rem;
 }
 
-.alg-shell-nav a {
-  display: inline-block;
-  padding: 0.75rem 1rem;
+.alg-shell-nav {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.nav-folder {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
   border-radius: 0.5rem;
-  background: #1f2937;
-  color: white;
+  overflow: hidden;
+  min-width: 200px;
+}
+
+.folder-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  width: 100%;
+  background: #f9fafb;
+  border: none;
+  cursor: pointer;
+  color: #374151;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.folder-toggle:hover {
+  background: #f3f4f6;
+}
+
+.folder-toggle svg {
+  flex-shrink: 0;
+  transform: rotate(-90deg);
+  transition: transform 0.2s ease;
+}
+
+.folder-toggle svg.expanded {
+  transform: rotate(0deg);
+}
+
+.folder-icon {
+  color: #f59e0b;
+}
+
+.folder-content {
+  display: flex;
+  flex-direction: column;
+  padding: 0.25rem 0;
+}
+
+.sub-folder {
+  padding-left: 1rem;
+}
+
+.sub-folder-header {
+  display: flex;
+  align-items: center;
+}
+
+.sub-folder-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #374151;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.sub-folder-toggle:hover {
+  background-color: #f3f4f6;
+}
+
+.sub-folder-toggle svg {
+  width: 14px;
+  height: 14px;
+  transform: rotate(-90deg);
+  transition: transform 0.2s ease;
+}
+
+.sub-folder-toggle svg.expanded {
+  transform: rotate(0deg);
+}
+
+.sub-folder-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  color: #374151;
   text-decoration: none;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+  flex: 1;
+  border-radius: 4px;
+}
+
+.sub-folder-link:hover {
+  background-color: #f3f4f6;
+}
+
+.sub-folder-content {
+  display: flex;
+  flex-direction: column;
+  padding: 0.125rem 0 0.125rem 1.5rem;
+}
+
+.sub-folder-content a {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem 0.4rem 3.5rem;
+  color: #374151;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: background-color 0.2s;
+}
+
+.sub-folder-content a:hover {
+  background-color: #f3f4f6;
+}
+
+.sub-folder-content a.active {
+  background-color: transparent;
+  border: 1px solid #667eea;
+  color: #374151;
+}
+
+.folder-content a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem 0.5rem 2.5rem;
+  color: #374151;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.folder-content a:hover {
+  background-color: #f3f4f6;
+}
+
+.folder-content a.active {
+  background-color: transparent;
+  border: 1px solid #667eea;
+  color: #374151;
+}
+
+.sub-folder-link.active {
+  background-color: transparent;
+  border: 1px solid #667eea;
+  color: #374151;
+}
+
+.file-icon {
+  flex-shrink: 0;
 }
 
 .alg-shell-content {

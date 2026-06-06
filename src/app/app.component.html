@@ -20,8 +20,8 @@
         >
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
-            width="16" 
-            height="16" 
+            width="14" 
+            height="14" 
             viewBox="0 0 24 24" 
             fill="none" 
             stroke="currentColor" 
@@ -35,7 +35,7 @@
         </button>
         <a 
           [routerLink]="getNavItemPath(item)" 
-          routerLinkActive="active"
+          [routerLinkActive]="item.children?.length ? '' : 'active-leaf'"
           class="nav-item"
         >
           {{ item.label }}
@@ -45,14 +45,50 @@
         *ngIf="item.children?.length && isGroupExpanded(item.path)" 
         class="nav-children"
       >
-        <a 
-          *ngFor="let child of item.children" 
-          [routerLink]="'/' + child.path" 
-          routerLinkActive="active"
-          class="nav-child"
-        >
-          {{ child.label }}
-        </a>
+        <div *ngFor="let child of item.children" class="nav-child-wrapper">
+          <div class="nav-child-header">
+            <button 
+              *ngIf="child.children?.length" 
+              class="nav-toggle-child"
+              (click)="toggleGroup(child.path)"
+            >
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                width="14" 
+                height="14" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-width="2" 
+                stroke-linecap="round" 
+                stroke-linejoin="round"
+                [class.expanded]="isGroupExpanded(child.path)"
+              >
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <a 
+              [routerLink]="'/' + child.path" 
+              [routerLinkActive]="child.children?.length ? '' : 'active-leaf'"
+              class="nav-child"
+            >
+              {{ child.label }}
+            </a>
+          </div>
+          <div 
+            *ngIf="child.children?.length && isGroupExpanded(child.path)" 
+            class="nav-grandchildren"
+          >
+            <a 
+              *ngFor="let grandchild of child.children" 
+              [routerLink]="'/' + grandchild.path" 
+              routerLinkActive="active"
+              class="nav-grandchild"
+            >
+              {{ grandchild.label }}
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </nav>

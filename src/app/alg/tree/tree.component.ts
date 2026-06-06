@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 
 interface TreeNode {
   id: string;
@@ -11,7 +11,7 @@ interface TreeNode {
 @Component({
   selector: 'app-tree',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterOutlet],
+  imports: [CommonModule, RouterOutlet],
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.css']
 })

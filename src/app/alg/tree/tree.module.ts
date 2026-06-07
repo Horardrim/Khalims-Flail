@@ -12,6 +12,10 @@ import { RouterModule } from '@angular/router';
           {
             path: 'bintree',
             loadChildren: () => import('./bintree/bintree.module').then((m) => m.BintreeModule)
+          },
+          {
+            path: 'bptree',
+            loadChildren: () => import('./bptree/bptree.module').then((m) => m.BptreeModule)
           }
         ]
       }

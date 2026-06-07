@@ -1,0 +1,122 @@
+<section class="bptree-page">
+  <header class="bptree-header">
+    <h1>B+ 树可视化</h1>
+    <div class="controls">
+      <div class="control-group">
+        <label for="order">B+ 树阶数:</label>
+        <input id="order" type="number" [(ngModel)]="order" min="3" max="6" />
+      </div>
+      <div class="control-group">
+        <label for="value">节点值:</label>
+        <input id="value" type="number" [(ngModel)]="inputValue" (keyup.enter)="insertKey()" />
+        <button (click)="insertKey()">添加节点</button>
+      </div>
+      <button class="delete-btn" (click)="deleteSelectedKey()" [disabled]="!isDeleteEnabled()">删除节点</button>
+      <button class="reset-btn" (click)="resetTree()">重置树</button>
+    </div>
+    <p>当前树高度: {{ height }}</p>
+  </header>
+
+  <div class="bptree-visualization">
+    <svg [attr.viewBox]="`0 0 ${getCanvasSize().width} ${getCanvasSize().height}`" class="tree-svg" (click)="onCanvasClick()">
+      <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280" />
+        </marker>
+      </defs>
+
+      <g class="edges">
+        <line
+          *ngFor="let edge of getEdges()"
+          [attr.x1]="getNodePosition(getNodeById(edge.from)!)!.x"
+          [attr.y1]="getNodePosition(getNodeById(edge.from)!)!.y + getNodeHeight() / 2"
+          [attr.x2]="getNodePosition(getNodeById(edge.to)!)!.x"
+          [attr.y2]="getNodePosition(getNodeById(edge.to)!)!.y - getNodeHeight() / 2"
+          stroke="#6b7280"
+          stroke-width="2"
+          marker-end="url(#arrowhead)"
+        />
+      </g>
+
+      <g class="nodes">
+        <g
+          *ngFor="let node of nodes"
+          [attr.transform]="`translate(${getNodePosition(node).x}, ${getNodePosition(node).y})`"
+          class="node-group"
+        >
+          <rect
+            [attr.width]="getNodeWidth(node)"
+            [attr.height]="getNodeHeight()"
+            [attr.x]="-getNodeWidth(node) / 2"
+            [attr.y]="-getNodeHeight() / 2"
+            rx="5"
+            ry="5"
+            [attr.fill]="node.isLeaf ? '#dbeafe' : '#fef3c7'"
+            stroke="#3b82f6"
+            stroke-width="2"
+          />
+
+          <g class="keys">
+            <line
+              *ngFor="let i of getLineIndices(node.keys.length)"
+              [attr.x1]="-getNodeWidth(node) / 2 + i * (getNodeWidth(node) / node.keys.length)"
+              [attr.y1]="-getNodeHeight() / 2"
+              [attr.x2]="-getNodeWidth(node) / 2 + i * (getNodeWidth(node) / node.keys.length)"
+              [attr.y2]="getNodeHeight() / 2"
+              stroke="#9ca3af"
+              stroke-width="1"
+            />
+
+            <g
+              *ngFor="let key of node.keys; let i = index"
+              class="key-item"
+              (mouseenter)="onKeyHover(node.id, i, $event)"
+              (mouseleave)="onKeyLeave()"
+              (click)="onKeyClick(node.id, i, $event)"
+            >
+              <rect
+                [attr.x]="-getNodeWidth(node) / 2 + i * (getNodeWidth(node) / node.keys.length)"
+                [attr.y]="-getNodeHeight() / 2"
+                [attr.width]="getNodeWidth(node) / node.keys.length"
+                [attr.height]="getNodeHeight()"
+                rx="3"
+                ry="3"
+                [attr.fill]="isKeyHovered(node.id, i) ? '#dbeafe' : isKeySelected(node.id, i) ? '#bfdbfe' : 'transparent'"
+                [attr.stroke]="isKeyHovered(node.id, i) || isKeySelected(node.id, i) ? '#3b82f6' : 'transparent'"
+                [attr.stroke-width]="isKeyHovered(node.id, i) ? '3' : isKeySelected(node.id, i) ? '4' : '0'"
+              />
+              <text
+                [attr.x]="-getNodeWidth(node) / 2 + (i + 0.5) * (getNodeWidth(node) / node.keys.length)"
+                [attr.y]="3"
+                text-anchor="middle"
+                dominant-baseline="middle"
+                font-size="14"
+                [attr.font-weight]="isKeySelected(node.id, i) ? '700' : '500'"
+                [attr.fill]="isKeySelected(node.id, i) ? '#1d4ed8' : '#1f2937'"
+              >
+                {{ key }}
+              </text>
+            </g>
+          </g>
+        </g>
+      </g>
+    </svg>
+
+    <div *ngIf="nodes.length === 0" class="empty-message">
+      <p>请添加节点来构建 B+ 树</p>
+    </div>
+
+    <div
+      *ngIf="getHoveredKeyInfo()"
+      class="tooltip"
+      [style.left]="tooltipPosition.x + 'px'"
+      [style.top]="tooltipPosition.y + 'px'"
+    >
+      <div class="tooltip-content">
+        <strong>键值:</strong> {{ getHoveredKeyInfo()!.key }}
+        <br>
+        <strong>类型:</strong> {{ getHoveredKeyInfo()!.type }}
+      </div>
+    </div>
+  </div>
+</section>
